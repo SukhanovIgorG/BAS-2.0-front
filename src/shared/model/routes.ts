@@ -1,11 +1,11 @@
-import "react-router-dom";
+import 'react-router-dom';
 
 export const ROUTES = {
-  HOME: "/",
-  LOGIN: "/login",
-  REGISTER: "/register",
-  ITEMS: "/items",
-  ITEM: "/items/:itemId",
+  HOME: '/',
+  LOGIN: '/login',
+  REGISTER: '/register',
+  ITEMS: '/items',
+  ITEM: '/items/:itemId',
 } as const;
 
 export type PathParams = {
@@ -14,7 +14,7 @@ export type PathParams = {
   };
 };
 
-declare module "react-router-dom" {
+declare module 'react-router-dom' {
   interface Register {
     params: PathParams;
   }

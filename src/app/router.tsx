@@ -2,11 +2,15 @@ import { createBrowserRouter, redirect } from 'react-router-dom';
 
 import { Header } from '@/features/header';
 
+import { AuthLayout } from '@/shared/components';
+
 import { ROUTES } from '../shared/model/routes';
 import App from './App';
 import { protectedLoader } from './protected-loader';
 import { ProtectedRoute } from './protected-route';
 import { Providers } from './providers';
+
+// 👈 новый импорт
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +20,7 @@ export const router = createBrowserRouter([
       </Providers>
     ),
     children: [
+      // 🔒 Защищённые маршруты
       {
         loader: protectedLoader,
         element: (
@@ -36,14 +41,22 @@ export const router = createBrowserRouter([
         ],
       },
 
+      // 🔑 Маршруты авторизации с отдельным layout
       {
-        path: ROUTES.LOGIN,
-        lazy: () => import('@/features/auth/login.page'),
+        element: <AuthLayout />,
+        children: [
+          {
+            path: ROUTES.LOGIN,
+            lazy: () => import('@/features/auth/login.page'),
+          },
+          {
+            path: ROUTES.REGISTER,
+            lazy: () => import('@/features/auth/register.page'),
+          },
+        ],
       },
-      {
-        path: ROUTES.REGISTER,
-        lazy: () => import('@/features/auth/register.page'),
-      },
+
+      // 🏠 Редирект
       {
         path: ROUTES.HOME,
         loader: () => redirect(ROUTES.ITEMS),

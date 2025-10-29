@@ -1,19 +1,15 @@
-import { type SubmitHandler, useForm } from 'react-hook-form';
+import { Card, Form, type FormProps, Typography } from 'antd';
 
 import { instance } from '@/shared/api/instance';
 import { ROUTES } from '@/shared/model/routes';
 import { useSession } from '@/shared/model/session';
-import {
-  Button,
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-  Input,
-  Label,
-} from '@/shared/ui/kit';
+import { Button, Input } from '@/shared/ui/kit';
+
+const defaultValues = {
+  email: '',
+  password: '',
+  confirmPassword: '',
+};
 
 interface RegisterFormType {
   email: string;
@@ -23,92 +19,71 @@ interface RegisterFormType {
 
 function RegisterPage() {
   const { login } = useSession();
-  const {
-    handleSubmit,
-    register,
-    formState: { errors, isValid },
-  } = useForm<RegisterFormType>({
-    mode: 'onSubmit',
-    defaultValues: {
-      email: '',
-      password: '',
-      confirmPassword: '',
-    },
-  });
 
-  console.log('isValid :>> ', isValid);
-  console.log('errors :>> ', errors);
-
-  const onSubmit: SubmitHandler<RegisterFormType> = async (data) => {
+  const onFinish: FormProps<RegisterFormType>['onFinish'] = async (data) => {
     const dto = {
       email: data.email,
       password: data.password,
     };
     const res = await instance.post('auth/register', dto);
-    console.log('res :>> ', res);
     login(res.data.accessToken);
-    console.log(res);
+  };
+
+  const onFinishFailed: FormProps<RegisterFormType>['onFinishFailed'] = (
+    errorInfo,
+  ) => {
+    console.log('Failed:', errorInfo);
   };
 
   return (
-    <div className="w-full h-screen flex justify-center items-center">
-      <Card className="w-full max-w-sm">
-        <CardHeader>
-          <CardTitle>Регистрация</CardTitle>
-          <CardDescription>Создайте новый аккаунт.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form id="register-form" onSubmit={handleSubmit(onSubmit)}>
-            <div className="flex flex-col gap-6">
-              <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  {...register('email', { required: true })}
-                  id="email"
-                  type="email"
-                  placeholder="m@example.com"
-                  required
-                />
-              </div>
-              <div className="grid gap-2">
-                <div className="flex items-center">
-                  <Label htmlFor="password">Пароль</Label>
-                </div>
-                <Input
-                  {...register('password', { required: true })}
-                  id="password"
-                  type="password"
-                  required
-                />
-              </div>
-              <div className="grid gap-2">
-                <div className="flex items-center">
-                  <Label htmlFor="confirm">Повторите пароль</Label>
-                </div>
-                <Input
-                  {...register('confirmPassword', { required: true })}
-                  id="confirm"
-                  type="password"
-                  required
-                />
-              </div>
-            </div>
-          </form>
-        </CardContent>
-        <CardFooter className="flex-col gap-2">
-          <Button form="register-form" type="submit" className="w-full">
-            Зарегистрироваться
-          </Button>
-          <CardDescription>
-            Уже зарегистрированы?{' '}
-            <a href={ROUTES.LOGIN} className="underline-offset-4 underline">
-              Войдите в аккаунт
-            </a>
-            .
-          </CardDescription>
-        </CardFooter>
+    <Card title="Регистрация">
+      <Form
+        id="register-form"
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        layout="vertical"
+        initialValues={defaultValues}
+        autoComplete="off"
+      >
+        <Form.Item label="Email" name="email">
+          <Input
+            size="large"
+            id="email"
+            type="email"
+            placeholder="m@example.com"
+            required
+          />
+        </Form.Item>
+        <Form.Item label="Пароль">
+          <Input size="large" id="password" type="password" required />
+        </Form.Item>
+        <Form.Item label="Подтвердите пароль">
+          <Input size="large" id="confirm" type="password" required />
+        </Form.Item>
+      </Form>
+      <Card className="flex-col gap-2">
+        <Button
+          type="primary"
+          size="large"
+          form="register-form"
+          htmlType="submit"
+          className="w-full"
+        >
+          Зарегистрироваться
+        </Button>
       </Card>
-    </div>
+      <Typography>
+        Уже зарегистрированы?{' '}
+        <Button
+          type="link"
+          href={ROUTES.LOGIN}
+          className="underline-offset-4 underline"
+        >
+          Войдите в аккаунт
+        </Button>
+        .
+      </Typography>
+    </Card>
   );
 }
 

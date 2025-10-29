@@ -1,37 +1,24 @@
-import { type SubmitHandler, useForm } from 'react-hook-form';
+import { Card, Flex, Form, type FormProps, Typography } from 'antd';
 
 import { instance } from '@/shared/api/instance';
 import { ROUTES } from '@/shared/model/routes';
 import { useSession } from '@/shared/model/session';
-import {
-  Button,
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-  Input,
-  Label,
-} from '@/shared/ui/kit';
+import { Button, Input } from '@/shared/ui/kit';
 
-interface RegisterFormType {
+const defaultValues = {
+  email: '',
+  password: '',
+};
+
+interface LoginFormType {
   email: string;
   password: string;
-  confirmPassword: string;
 }
 
 function LoginPage() {
   const { login } = useSession();
-  const { handleSubmit, register } = useForm<RegisterFormType>({
-    mode: 'onSubmit',
-    defaultValues: {
-      email: '',
-      password: '',
-    },
-  });
 
-  const onSubmit: SubmitHandler<RegisterFormType> = async (data) => {
+  const onFinish: FormProps<LoginFormType>['onFinish'] = async (data) => {
     const dto = {
       email: data.email,
       password: data.password,
@@ -40,63 +27,73 @@ function LoginPage() {
     login(res.data.accessToken);
   };
 
+  const onFinishFailed: FormProps<LoginFormType>['onFinishFailed'] = (
+    errorInfo,
+  ) => {
+    console.log('Failed:', errorInfo);
+  };
+
   return (
-    <div className="w-full h-screen flex justify-center items-center">
-      <Card className="w-full max-w-sm">
-        <CardHeader>
-          <CardTitle>Вход в аккаунт</CardTitle>
-          <CardDescription>Введите свои данные для входа.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit(onSubmit)} id="login-form">
-            <div className="flex flex-col gap-6">
-              <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  {...register('email', { required: true })}
-                  id="email"
-                  type="email"
-                  placeholder="m@example.com"
-                  required
-                />
-              </div>
-              <div className="grid gap-2">
-                <div className="flex items-center">
-                  <Label htmlFor="password">Пароль</Label>
-                  <a
-                    href="#"
-                    className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                  >
-                    Забыли пароль?
-                  </a>
-                </div>
-                <Input
-                  {...register('password', { required: true })}
-                  id="password"
-                  type="password"
-                  required
-                />
-              </div>
-            </div>
-          </form>
-        </CardContent>
-        <CardFooter className="flex-col gap-2">
-          <Button type="submit" className="w-full" form="login-form">
+    <Card title="Вход в аккаунт" className="w-full max-w-sm">
+      <Form
+        layout="vertical"
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        id="login-form"
+        initialValues={defaultValues}
+      >
+        <Form.Item label="Email" name="email" className="grid gap-2">
+          <Input
+            id="email"
+            type="email"
+            size="large"
+            placeholder="m@example.com"
+            required
+          />
+        </Form.Item>
+        <Form.Item label="Пароль" name="password" className="grid gap-2">
+          <Input id="password" type="password" size="large" required />
+        </Form.Item>
+      </Form>
+      <Card
+        size="small"
+        extra={
+          <Button
+            type="link"
+            href="#"
+            className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+          >
+            Забыли пароль?
+          </Button>
+        }
+      >
+        <Flex vertical gap="small" style={{ width: '100%' }}>
+          <Button
+            htmlType="submit"
+            variant="filled"
+            className="w-full"
+            form="login-form"
+            type="primary"
+            size="large"
+          >
             Войти
           </Button>
-          <Button variant="outline" className="w-full">
+          <Button disabled className="w-full">
             Войти через Google
           </Button>
-          <CardDescription>
-            Если нет аккаунта, вы можете{' '}
-            <a href={ROUTES.REGISTER} className="underline-offset-4 underline">
-              зарегистрироваться
-            </a>
-            .
-          </CardDescription>
-        </CardFooter>
+        </Flex>
       </Card>
-    </div>
+      <Typography>
+        Если нет аккаунта, вы можете{' '}
+        <Button
+          type="link"
+          href={ROUTES.REGISTER}
+          className="underline-offset-4 underline "
+        >
+          зарегистрироваться
+        </Button>
+      </Typography>
+    </Card>
   );
 }
 
