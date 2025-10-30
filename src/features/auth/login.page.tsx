@@ -41,18 +41,33 @@ function LoginPage() {
         onFinishFailed={onFinishFailed}
         id="login-form"
         initialValues={defaultValues}
+        validateTrigger="onChange"
       >
-        <Form.Item label="Email" name="email" className="grid gap-2">
+        <Form.Item
+          label="Email"
+          name="email"
+          className="grid gap-2"
+          rules={[{ pattern: /\S+@\S+\.\S+/, message: 'Некорректный email' }]}
+        >
           <Input
-            id="email"
             type="email"
             size="large"
             placeholder="m@example.com"
             required
           />
         </Form.Item>
-        <Form.Item label="Пароль" name="password" className="grid gap-2">
-          <Input id="password" type="password" size="large" required />
+        <Form.Item
+          label="Пароль"
+          name="password"
+          className="grid gap-2"
+          rules={[
+            {
+              min: 8,
+              message: 'Пароль должен содержать не менее 8 символов',
+            },
+          ]}
+        >
+          <Input type="password" size="large" required />
         </Form.Item>
       </Form>
       <Card

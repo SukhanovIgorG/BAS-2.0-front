@@ -13,7 +13,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
           borderRadius: 8,
 
           // Alias Token
-          // colorBgContainer: '#f6ffed',
+          colorBgContainer: '#fff',
         },
       }}
     >
