@@ -54,24 +54,22 @@ function RegisterPage() {
             required
           />
         </Form.Item>
-        <Form.Item label="Пароль">
+        <Form.Item label="Пароль" name="password">
           <Input size="large" id="password" type="password" required />
         </Form.Item>
-        <Form.Item label="Подтвердите пароль">
+        <Form.Item label="Подтвердите пароль" name="confirmPassword">
           <Input size="large" id="confirm" type="password" required />
         </Form.Item>
       </Form>
-      <Card className="flex-col gap-2">
-        <Button
-          type="primary"
-          size="large"
-          form="register-form"
-          htmlType="submit"
-          className="w-full"
-        >
-          Зарегистрироваться
-        </Button>
-      </Card>
+      <Button
+        type="primary"
+        size="large"
+        form="register-form"
+        htmlType="submit"
+        className="w-full"
+      >
+        Зарегистрироваться
+      </Button>
       <Typography>
         Уже зарегистрированы?{' '}
         <Button

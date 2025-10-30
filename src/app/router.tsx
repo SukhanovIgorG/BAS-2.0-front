@@ -1,8 +1,6 @@
 import { createBrowserRouter, redirect } from 'react-router-dom';
 
-import { Header } from '@/features/header';
-
-import { AuthLayout } from '@/shared/components';
+import { AppLayout, AuthLayout } from '@/shared/components';
 
 import { ROUTES } from '../shared/model/routes';
 import App from './App';
@@ -24,10 +22,9 @@ export const router = createBrowserRouter([
       {
         loader: protectedLoader,
         element: (
-          <>
-            <Header />
+          <AppLayout>
             <ProtectedRoute />
-          </>
+          </AppLayout>
         ),
         children: [
           {
