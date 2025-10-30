@@ -31,7 +31,7 @@ export const AppLayout = ({ children }: { children: ReactNode }) => {
               <ThunderboltTwoTone />
               {!collapsed && 'LOGO'}
             </div>
-            <div className="p-2 flex items-center">
+            <div className="p-1 flex items-center bg-blue-200">
               <Button
                 type="text"
                 icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -43,7 +43,7 @@ export const AppLayout = ({ children }: { children: ReactNode }) => {
             </div>
           </div>
           <Menu className="flex-1" />
-          <div className="p-2">
+          <div className="p-1">
             <LogoutButton className="w-full" />
           </div>
         </Flex>

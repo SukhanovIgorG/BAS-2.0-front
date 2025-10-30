@@ -4,13 +4,15 @@ export const ROUTES = {
   HOME: '/',
   LOGIN: '/login',
   REGISTER: '/register',
-  ITEMS: '/items',
-  ITEM: '/items/:itemId',
+  SPACES: '/spaces',
+  SPACE: '/space/:spaceId',
+  USERS: '/users',
+  STATISTIC: '/statistic',
 } as const;
 
 export type PathParams = {
-  [ROUTES.ITEM]: {
-    itemId: string;
+  [ROUTES.SPACE]: {
+    spaceId: string;
   };
 };
 

@@ -8,8 +8,6 @@ import { protectedLoader } from './protected-loader';
 import { ProtectedRoute } from './protected-route';
 import { Providers } from './providers';
 
-// 👈 новый импорт
-
 export const router = createBrowserRouter([
   {
     element: (
@@ -28,12 +26,20 @@ export const router = createBrowserRouter([
         ),
         children: [
           {
-            path: ROUTES.ITEMS,
-            lazy: () => import('@/features/items-list/items-list.page'),
+            path: ROUTES.USERS,
+            lazy: () => import('@/features/users/users.page'),
           },
           {
-            path: ROUTES.ITEM,
-            lazy: () => import('@/features/item/item.page'),
+            path: ROUTES.SPACES,
+            lazy: () => import('@/features/spaces/spaces.page'),
+          },
+          {
+            path: ROUTES.SPACE,
+            lazy: () => import('@/features/space/space.page'),
+          },
+          {
+            path: ROUTES.STATISTIC,
+            lazy: () => import('@/features/statistic/statistic.page'),
           },
         ],
       },
@@ -56,7 +62,7 @@ export const router = createBrowserRouter([
       // 🏠 Редирект
       {
         path: ROUTES.HOME,
-        loader: () => redirect(ROUTES.ITEMS),
+        loader: () => redirect(ROUTES.SPACES),
       },
     ],
   },

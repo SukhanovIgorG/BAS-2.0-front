@@ -10,8 +10,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       theme={{
         token: {
           // Seed Token
-          borderRadius: 8,
-
+          borderRadius: 0,
           // Alias Token
           colorBgContainer: '#fff',
         },
