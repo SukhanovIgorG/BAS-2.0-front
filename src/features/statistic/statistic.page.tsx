@@ -1,9 +1,7 @@
+import { Page } from '@/shared/components';
+
 function StatisticPage() {
-  return (
-    <div>
-      <h2>StatisticPage</h2>
-    </div>
-  );
+  return <Page title="Статистика"></Page>;
 }
 
 export const Component = StatisticPage;

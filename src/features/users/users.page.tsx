@@ -1,8 +1,14 @@
+import { Page } from '@/shared/components';
+
 function UsersPage() {
   return (
-    <div>
-      <h2>Список пользователей</h2>
-    </div>
+    <Page title="Список пользователей">
+      <ul>
+        <li>User 1</li>
+        <li>User 2</li>
+        <li>User 3</li>
+      </ul>
+    </Page>
   );
 }
 

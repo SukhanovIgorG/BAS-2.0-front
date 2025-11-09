@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 
+import { Page } from '@/shared/components';
 import { ROUTES } from '@/shared/model/routes';
 
 function SpacesPage() {
   const spaceId = '1'; // пример ID
 
   return (
-    <div>
-      <h2>Список пространств</h2>
+    <Page title="Список пространств">
       <ul>
         <li>
           <Link to={ROUTES.SPACE.replace(':spaceId', spaceId)} title="Items">
@@ -15,7 +15,7 @@ function SpacesPage() {
           </Link>
         </li>
       </ul>
-    </div>
+    </Page>
   );
 }
 
