@@ -1,3 +1,5 @@
+import { styled } from 'styled-components';
+
 import { Card, Flex, Form, type FormProps, Typography } from 'antd';
 
 import { instance } from '@/shared/api/instance';
@@ -34,7 +36,7 @@ function LoginPage() {
   };
 
   return (
-    <Card title="Вход в аккаунт" className="w-full max-w-sm">
+    <StyledCard title="Вход в аккаунт" className="w-full max-w-sm">
       <Form
         layout="vertical"
         onFinish={onFinish}
@@ -108,8 +110,14 @@ function LoginPage() {
           зарегистрироваться
         </Button>
       </Typography>
-    </Card>
+    </StyledCard>
   );
 }
+
+const StyledCard = styled(Card)`
+  border: 3px solid #252424;
+  border-radius: 3px;
+  box-shadow: 4px 4px 0 0 #221b19;
+`;
 
 export const Component = LoginPage;

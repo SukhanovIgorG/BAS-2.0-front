@@ -26,10 +26,6 @@ export const SiderComponent = () => {
     >
       <Flex vertical className="h-full pb-4">
         <div className="flex w-full align-center justify-center">
-          <div className="flex items-center justify-center h-16 bg-blue-300 flex-1">
-            <ThunderboltTwoTone />
-            {!collapsed && 'LOGO'}
-          </div>
           <div className="p-1 flex items-center bg-blue-200">
             <Button
               type="text"
@@ -39,6 +35,10 @@ export const SiderComponent = () => {
                 fontSize: '16px',
               }}
             />
+          </div>
+          <div className="flex items-center justify-center h-16 bg-blue-300 flex-1">
+            <ThunderboltTwoTone />
+            {!collapsed && 'LOGO'}
           </div>
         </div>
         <Menu className="flex-1" />

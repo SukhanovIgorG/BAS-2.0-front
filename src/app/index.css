@@ -127,7 +127,53 @@
   body {
     @apply bg-background text-foreground;
   }
-  html, body, #root {
+  html,
+  body,
+  #root {
     height: 100%;
+    min-width: 320px;
+  }
+}
+/* ------  */
+/* ANTD  */
+
+/* FORM ITEM  */
+.ant-form-item-vertical {
+  .ant-form-item-row {
+    flex-direction: row;
+  }
+}
+
+/* INPUT  */
+.ant-input {
+  border: 3px solid #252424;
+  border-radius: 3px;
+  box-shadow: 4px 4px 0 0 #221b19;
+}
+
+/* BUTTON  */
+.ant-btn {
+  &.ant-btn-variant-solid,
+  .ant-btn-variant-outlined {
+    border: 3px solid #252424;
+    border-radius: 3px;
+    box-shadow: 4px 4px 0 0 #221b19;
+
+    &:not(:disabled) {
+      &:hover {
+        box-shadow: 5px 5px 0 0 #221b19;
+        transform: translate(-1px, -1px);
+      }
+    }
+  }
+
+  &.ant-btn-link {
+    &:hover {
+      transform: translate(-1px, -1px);
+    }
+  }
+
+  &:disabled {
+    box-shadow: 5px 5px 0 0 #999999;
   }
 }
