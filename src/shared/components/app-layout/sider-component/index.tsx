@@ -24,7 +24,7 @@ export const SiderComponent = () => {
       theme="light"
       className="flex flex-col gap-4"
     >
-      <Flex vertical className="h-full">
+      <Flex vertical className="h-full pb-4">
         <div className="flex w-full align-center justify-center">
           <div className="flex items-center justify-center h-16 bg-blue-300 flex-1">
             <ThunderboltTwoTone />
@@ -42,7 +42,7 @@ export const SiderComponent = () => {
           </div>
         </div>
         <Menu className="flex-1" />
-        <div className="p-1">
+        <div className="p-2">
           <LogoutButton className="w-full" />
         </div>
       </Flex>
