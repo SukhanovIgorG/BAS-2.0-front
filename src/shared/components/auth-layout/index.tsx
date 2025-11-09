@@ -1,9 +1,19 @@
+import { styled } from 'styled-components';
+
 import { Outlet } from 'react-router-dom';
 
 export function AuthLayout() {
   return (
-    <div className="bg-blue-50 flex h-[100dvh] flex-col items-center justify-center">
+    <Wrapper>
       <Outlet />
-    </div>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
