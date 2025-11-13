@@ -10,5 +10,6 @@ export const instance = axios.create({
   headers: {
     'X-Custom-Header': 'foobar',
     'Access-Control-Allow-Origin': '*',
+    Authorization: 'Bearer ' + localStorage.getItem('token'),
   },
 });
