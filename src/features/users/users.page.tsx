@@ -1,16 +1,57 @@
+import { Table, Tag } from 'antd';
+import type { TableProps } from 'antd/es/table';
+
 import { Page } from '@/shared/components';
 import { useGetUsersQuery } from '@/shared/hooks';
+import type { User } from '@/shared/types';
+
+const columns: TableProps<User>['columns'] = [
+  {
+    title: 'Email',
+    dataIndex: 'email',
+    key: 'email',
+    width: 100,
+  },
+  {
+    title: 'Username',
+    dataIndex: 'username',
+    key: 'username',
+    width: 100,
+  },
+  {
+    title: 'roles',
+    dataIndex: 'roles',
+    key: 'roles',
+    width: 100,
+    render: (_, { roles }) => (
+      <>
+        {roles.map((tag) => {
+          let color = tag.length > 5 ? 'geekblue' : 'green';
+          if (tag === 'loser') {
+            color = 'volcano';
+          }
+          return (
+            <Tag color={color} key={tag}>
+              {tag.toUpperCase()}
+            </Tag>
+          );
+        })}
+      </>
+    ),
+  },
+];
 
 function UsersPage() {
-  const userList = useGetUsersQuery();
+  const { data, isLoading } = useGetUsersQuery();
 
   return (
     <Page title="Список пользователей">
-      <ul>
-        {userList.data?.map((user) => (
-          <li key={user.id}>{user.email}</li>
-        ))}
-      </ul>
+      <Table
+        dataSource={data || []}
+        columns={columns}
+        loading={isLoading}
+        rowKey={(record) => record.id}
+      />
     </Page>
   );
 }
