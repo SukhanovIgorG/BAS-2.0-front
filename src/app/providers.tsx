@@ -11,9 +11,15 @@ export function Providers({ children }: { children: React.ReactNode }) {
       theme={{
         token: {
           // Seed Token
-          boxShadow: '4px 4px 0 0 #221b19',
-          borderRadius: 0,
           // Alias Token
+        },
+        components: {
+          Button: {
+            borderRadius: 0,
+          },
+          Menu: {
+            borderRadius: 0,
+          },
         },
       }}
     >

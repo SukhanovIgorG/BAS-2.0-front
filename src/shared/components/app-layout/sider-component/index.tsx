@@ -26,7 +26,7 @@ export const SiderComponent = () => {
     >
       <Flex vertical className="h-full pb-4">
         <div className="flex w-full align-center justify-center">
-          <div className="p-1 flex items-center bg-blue-200">
+          <div className="p-1 flex items-center bg-blue-300">
             <Button
               type="text"
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}

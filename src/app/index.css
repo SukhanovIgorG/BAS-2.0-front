@@ -38,8 +38,7 @@
 
 /* BUTTON  */
 .ant-btn {
-  &.ant-btn-variant-solid,
-  .ant-btn-variant-outlined {
+  &:not(.ant-btn-link) {
     border: 3px solid #252424;
     border-radius: 3px;
     box-shadow: 4px 4px 0 0 #221b19;
