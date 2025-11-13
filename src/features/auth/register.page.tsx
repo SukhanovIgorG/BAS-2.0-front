@@ -25,7 +25,7 @@ function RegisterPage() {
       email: data.email,
       password: data.password,
     };
-    const res = await instance.post('auth/register', dto);
+    const res = await instance.post('api/auth/register', dto);
     login(res.data.accessToken);
   };
 

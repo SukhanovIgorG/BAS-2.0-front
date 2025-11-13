@@ -1,12 +1,15 @@
 import { Page } from '@/shared/components';
+import { useGetUsersQuery } from '@/shared/hooks';
 
 function UsersPage() {
+  const userList = useGetUsersQuery();
+
   return (
     <Page title="Список пользователей">
       <ul>
-        <li>User 1</li>
-        <li>User 2</li>
-        <li>User 3</li>
+        {userList.data?.map((user) => (
+          <li key={user.id}>{user.email}</li>
+        ))}
       </ul>
     </Page>
   );

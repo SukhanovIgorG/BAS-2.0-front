@@ -25,7 +25,7 @@ function LoginPage() {
       email: data.email,
       password: data.password,
     };
-    const res = await instance.post('auth/login', dto);
+    const res = await instance.post('api/auth/login', dto);
     login(res.data.accessToken);
   };
 
