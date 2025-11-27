@@ -1,12 +1,9 @@
+import type { ModalProps } from 'antd';
 import { type ReactElement, useState } from 'react';
-
-type DialogProps = {
-  onClose: () => void;
-}; // TODO: add your modal props
 
 export type TriggerProps = {
   children: ReactElement;
-  modal: ReactElement<DialogProps>;
+  modal: ReactElement<ModalProps>;
 };
 
 export const Trigger = ({ children, modal }: TriggerProps) => {
@@ -21,7 +18,8 @@ export const Trigger = ({ children, modal }: TriggerProps) => {
       {isActive ? (
         <modal.type
           {...modal.props}
-          onClose={() => {
+          open={isActive}
+          onCancel={() => {
             setActive(false);
           }}
         />

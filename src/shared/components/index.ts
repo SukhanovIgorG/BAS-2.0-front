@@ -1,6 +1,7 @@
 export * from './buttons';
+export * from './modals';
+export * from './forms';
 
-export { Trigger, type TriggerProps } from './trigger';
 export { AuthLayout } from './auth-layout';
 export { AppLayout } from './app-layout';
 export { Menu, type MenuProps } from './menu';
