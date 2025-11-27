@@ -1,17 +1,12 @@
-import { Button, Space, Table, type TableProps } from 'antd';
+import { Button, Table, type TableProps } from 'antd';
 import { Link } from 'react-router-dom';
 
 import { CreateSpaceModal, Page } from '@/shared/components';
 import { ROUTES } from '@/shared/model/routes';
+import type { SpaceType } from '@/shared/types';
 import { Trigger } from '@/shared/ui';
 
-type Space = {
-  id: string;
-  name: string;
-  address: string;
-};
-
-const SPACES: Space[] = [
+const SPACES: SpaceType[] = [
   {
     id: 'first-mock-space',
     name: 'First',
@@ -19,7 +14,7 @@ const SPACES: Space[] = [
   },
 ];
 
-const columns: TableProps<Space>['columns'] = [
+const columns: TableProps<SpaceType>['columns'] = [
   {
     title: 'Название',
     dataIndex: 'name',

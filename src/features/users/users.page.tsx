@@ -3,9 +3,9 @@ import type { TableProps } from 'antd/es/table';
 
 import { Page } from '@/shared/components';
 import { useGetUsersQuery } from '@/shared/hooks';
-import type { User } from '@/shared/types';
+import type { UserType } from '@/shared/types';
 
-const columns: TableProps<User>['columns'] = [
+const columns: TableProps<UserType>['columns'] = [
   {
     title: 'Email',
     dataIndex: 'email',

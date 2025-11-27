@@ -1,9 +1,9 @@
 import { type UseQueryResult, useQuery } from '@tanstack/react-query';
 
 import { userService } from '@/shared/services/user.service';
-import { type User } from '@/shared/types';
+import { type UserType } from '@/shared/types';
 
-export const useGetUsersQuery = (): UseQueryResult<User[], Error> => {
+export const useGetUsersQuery = (): UseQueryResult<UserType[], Error> => {
   return useQuery({
     queryKey: ['users'],
     queryFn: () => {
