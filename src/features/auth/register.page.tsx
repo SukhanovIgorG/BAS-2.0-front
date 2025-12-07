@@ -48,17 +48,31 @@ function RegisterPage() {
         <Form.Item label="Email" name="email">
           <Input
             size="large"
-            id="email"
             type="email"
             placeholder="m@example.com"
             required
           />
         </Form.Item>
         <Form.Item label="Пароль" name="password">
-          <Input size="large" id="password" type="password" required />
+          <Input size="large" type="password" required />
         </Form.Item>
-        <Form.Item label="Подтвердите пароль" name="confirmPassword">
-          <Input size="large" id="confirm" type="password" required />
+        <Form.Item
+          label="Подтвердите пароль"
+          name="confirmPassword"
+          dependencies={['password']}
+          rules={[
+            { required: true, message: 'Пожалуйста, подтвердите пароль!' },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue('password') === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error('Пароли не совпадают!'));
+              },
+            }),
+          ]}
+        >
+          <Input size="large" type="password" required />
         </Form.Item>
       </Form>
       <Button
