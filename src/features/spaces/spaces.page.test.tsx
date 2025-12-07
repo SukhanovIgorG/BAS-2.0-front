@@ -3,7 +3,6 @@ import { MemoryRouter } from 'react-router-dom';
 import { Component as SpacesPage } from './spaces.page';
 import { vi } from 'vitest';
 
-// Mock shared components to avoid deep rendering
 vi.mock('@/shared/components', () => ({
     Page: ({ title, children }: { title: string; children: React.ReactNode }) => <div><h1>{title}</h1>{children}</div>,
     CreateSpaceModal: () => <div>CreateSpaceModal</div>

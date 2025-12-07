@@ -42,16 +42,6 @@ describe('LoginPage', () => {
         const submitBtn = screen.getByRole('button', { name: /^войти$/i });
         await user.click(submitBtn);
 
-        // Ant Design validation messages nicely appear
-        // We can check for them. The text depends on locale or default messages.
-        // Based on the code:
-        // Email rules: required (implied by input type email + required prop logic in AntD?)
-        // Actually the Input has `required` prop but Form.Item has rules.
-        // Let's check if "Please enter..." or specific message appears or just invalid state.
-        // The code has: rules={[{ pattern: /\S+@\S+\.\S+/, message: 'Некорректный email' }]}
-        // And required prop on Input.
-
-        // Easier validation: Type invalid email and check error
         const emailInput = screen.getByLabelText(/email/i);
         await user.type(emailInput, 'invalid-email');
         await user.click(submitBtn);

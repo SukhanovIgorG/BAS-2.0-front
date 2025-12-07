@@ -9,12 +9,8 @@ describe('Button', () => {
 
     it('passes props to ant design button', () => {
         render(<Button loading>Loading</Button>);
-        // Ant Design's loading button usually renders a loading icon or modifies class
-        // We trust Ant Design works, but we check if our wrapper passes props conceptually.
-        // Ideally we check behavior, but for a UI kit wrapper, checking rendering is often enough.
         const button = screen.getByRole('button');
         expect(button).toBeInTheDocument();
-        // More specific checks depend on AntD internals, avoiding brittle tests is key.
     });
 
     it('supports custom class names', () => {
