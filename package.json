@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "format": "npx prettier -w .",
     "preview": "vite preview",
-    "test": "vitest",
+    "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage"
   },
