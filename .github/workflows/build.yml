@@ -1,47 +1,17 @@
 name: Build
 on:
-  push:
+  workflow_run:
+    workflows: ["Check"]
     branches: [main, dev]
+    types: [completed]
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v5
-      - name: Set Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-      - name: Install deps
-        run: yarn install
-      - name: Lint
-        run: yarn lint
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v5
-      - name: Set Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-      - name: Install deps
-        run: yarn install
-      - name: Test
-        run: yarn test
   build:
-    needs: [lint, test]
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v5
-      - name: Set Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-      - name: Install deps
-        run: yarn install
+      - name: Setup Node and install deps
+        uses: ./.github/actions/node-setup
       - name: Build
         run: yarn build
