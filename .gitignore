@@ -23,6 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 
-package-lock.json
-yarn.lock
+# Coverage reports
 coverage
+
+# IMPORTANT: Lock files MUST be committed to Git!
+# They ensure deterministic builds and are required for Docker --frozen-lockfile
