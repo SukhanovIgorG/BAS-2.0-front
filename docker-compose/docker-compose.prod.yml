@@ -1,0 +1,7 @@
+services:
+  bas-front-app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.prod
+    ports:
+      - 5173:5173
