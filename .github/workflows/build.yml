@@ -1,0 +1,16 @@
+name: Build
+on:
+  workflow_run:
+    workflows: ["Check"]
+    branches: [main, dev]
+    types: [completed]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Node and install deps
+        uses: ./.github/actions/node-setup
+      - name: Build
+        run: yarn build

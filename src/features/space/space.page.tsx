@@ -5,10 +5,9 @@ import { ROUTES } from '@/shared/model/routes';
 
 function SpacePage() {
   const { spaceId } = useParams();
-  console.log('spaceId :>> ', spaceId);
 
   return (
-    <Page title="Пространство">
+    <Page title={`Пространство ${spaceId}`}>
       <Link to={ROUTES.SPACES} title="Items">
         Все пространства
       </Link>

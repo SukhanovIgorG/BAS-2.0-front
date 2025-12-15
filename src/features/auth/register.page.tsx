@@ -74,27 +74,27 @@ function RegisterPage() {
         >
           <Input size="large" type="password" required />
         </Form.Item>
-      </Form>
-      <Button
-        type="primary"
-        size="large"
-        form="register-form"
-        htmlType="submit"
-        className="w-full"
-      >
-        Зарегистрироваться
-      </Button>
-      <Typography>
-        Уже зарегистрированы?{' '}
         <Button
-          type="link"
-          href={ROUTES.LOGIN}
-          className="underline-offset-4 underline"
+          type="primary"
+          size="large"
+          form="register-form"
+          htmlType="submit"
+          className="w-full"
         >
-          Войдите в аккаунт
+          Зарегистрироваться
         </Button>
-        .
-      </Typography>
+        <Typography>
+          Уже зарегистрированы?{' '}
+          <Button
+            type="link"
+            href={ROUTES.LOGIN}
+            className="underline-offset-4 underline"
+          >
+            Войдите в аккаунт
+          </Button>
+          .
+        </Typography>
+      </Form>
     </Card>
   );
 }

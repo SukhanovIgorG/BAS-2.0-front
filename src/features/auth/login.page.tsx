@@ -71,45 +71,45 @@ function LoginPage() {
         >
           <Input type="password" size="large" required />
         </Form.Item>
-      </Form>
-      <Card
-        size="small"
-        extra={
+        <Card
+          size="small"
+          extra={
+            <Button
+              type="link"
+              href="#"
+              className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+            >
+              Забыли пароль?
+            </Button>
+          }
+        >
+          <Flex vertical gap="small" style={{ width: '100%' }}>
+            <Button
+              htmlType="submit"
+              variant="filled"
+              className="w-full"
+              form="login-form"
+              type="primary"
+              size="large"
+            >
+              Войти
+            </Button>
+            <Button disabled className="w-full">
+              Войти через Google
+            </Button>
+          </Flex>
+        </Card>
+        <Typography>
+          Если нет аккаунта, вы можете{' '}
           <Button
             type="link"
-            href="#"
-            className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+            href={ROUTES.REGISTER}
+            className="underline-offset-4 underline "
           >
-            Забыли пароль?
+            зарегистрироваться
           </Button>
-        }
-      >
-        <Flex vertical gap="small" style={{ width: '100%' }}>
-          <Button
-            htmlType="submit"
-            variant="filled"
-            className="w-full"
-            form="login-form"
-            type="primary"
-            size="large"
-          >
-            Войти
-          </Button>
-          <Button disabled className="w-full">
-            Войти через Google
-          </Button>
-        </Flex>
-      </Card>
-      <Typography>
-        Если нет аккаунта, вы можете{' '}
-        <Button
-          type="link"
-          href={ROUTES.REGISTER}
-          className="underline-offset-4 underline "
-        >
-          зарегистрироваться
-        </Button>
-      </Typography>
+        </Typography>
+      </Form>
     </StyledCard>
   );
 }
