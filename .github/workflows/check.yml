@@ -1,4 +1,7 @@
 name: Check
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 on:
   push:
     branches:
@@ -7,6 +10,10 @@ on:
       - feat/**
       - fix/**
   pull_request:
+    branches:
+      - main
+      - dev
+    types: [opened]
 
 jobs:
   lint:
