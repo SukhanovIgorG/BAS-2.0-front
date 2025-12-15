@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "docker:dev": "docker-compose -f docker-compose/docker-compose.dev.yml up --build",
+    "docker:down": "docker-compose -f docker-compose/docker-compose.dev.yml down",
     "lint": "eslint . --fix",
     "format": "npx prettier -w .",
     "preview": "vite preview",
