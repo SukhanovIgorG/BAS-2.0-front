@@ -1,7 +1,7 @@
-name: Check
+name: Build
 on:
   push:
-    branches: [feat/**, fix/**]
+    branches: [main, dev]
 
 jobs:
   lint:
@@ -30,3 +30,18 @@ jobs:
         run: yarn install
       - name: Test
         run: yarn test
+  build:
+    needs: [lint, test]
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Set Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install deps
+        run: yarn install
+      - name: Build
+        run: yarn build
