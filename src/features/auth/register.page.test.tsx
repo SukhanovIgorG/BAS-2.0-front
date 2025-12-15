@@ -1,20 +1,18 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
-import { Component as RegisterPage } from './register.page';
 import { instance } from '@/shared/api/instance';
 import { useSession } from '@/shared/model/session';
 
-// Mock dependencies
 vi.mock('@/shared/api/instance', () => ({
-    instance: {
-        post: vi.fn(),
-    },
+    instance: { post: vi.fn() },
 }));
 
 vi.mock('@/shared/model/session', () => ({
     useSession: vi.fn(),
 }));
+
+import { Component as RegisterPage } from './register.page';
 
 describe('RegisterPage', () => {
     const mockLogin = vi.fn();
