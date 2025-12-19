@@ -19,7 +19,7 @@ function SpacePage() {
             ),
           },
           {
-            title: `Пространство ${spaceId}`,
+            title: spaceId,
           },
         ]}
       />
