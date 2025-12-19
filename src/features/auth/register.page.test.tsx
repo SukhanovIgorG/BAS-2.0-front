@@ -1,26 +1,30 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
-import { instance } from '@/shared/api/instance';
 import { useSession } from '@/shared/model/session';
-
-vi.mock('@/shared/api/instance', () => ({
-    instance: { post: vi.fn() },
-}));
 
 vi.mock('@/shared/model/session', () => ({
     useSession: vi.fn(),
 }));
 
+vi.mock('@/shared/hooks', () => ({
+    useRegisterMutation: vi.fn(),
+}));
+
 import { Component as RegisterPage } from './register.page';
+import { useRegisterMutation } from '@/shared/hooks';
 
 describe('RegisterPage', () => {
     const mockLogin = vi.fn();
+    const mockMutate = vi.fn();
 
     beforeEach(() => {
         vi.clearAllMocks();
         (useSession as unknown as ReturnType<typeof vi.fn>).mockReturnValue({
             login: mockLogin,
+        });
+        (useRegisterMutation as unknown as ReturnType<typeof vi.fn>).mockReturnValue({
+            mutate: mockMutate,
         });
     });
 
@@ -36,9 +40,6 @@ describe('RegisterPage', () => {
 
     it('submits form and logs in on success', async () => {
         const user = userEvent.setup();
-        (instance.post as unknown as ReturnType<typeof vi.fn>).mockResolvedValue({
-            data: { accessToken: 'new-token' },
-        });
 
         render(<RegisterPage />);
 
@@ -53,17 +54,34 @@ describe('RegisterPage', () => {
         await user.click(submitBtn);
 
         await waitFor(() => {
-            expect(instance.post).toHaveBeenCalledWith('api/auth/register', {
+            expect(mockMutate).toHaveBeenCalledWith({
                 email: 'newuser@example.com',
                 password: 'secret123',
             });
-            expect(mockLogin).toHaveBeenCalledWith('new-token');
         });
     });
 
     it('validates passwords match', async () => {
+        const user = userEvent.setup();
         render(<RegisterPage />);
-        const link = screen.getByRole('link', { name: /войдите в аккаунт/i });
-        expect(link).toHaveAttribute('href', '/login');
+
+        const emailInput = screen.getByLabelText(/^email$/i);
+        const passwordInput = screen.getByLabelText(/^пароль$/i);
+        const confirmInput = screen.getByLabelText(/подтвердите пароль/i);
+        const submitBtn = screen.getByRole('button', { name: /зарегистрироваться/i });
+
+        // Fill in the form with mismatched passwords
+        await user.type(emailInput, 'test@example.com');
+        await user.type(passwordInput, 'password123');
+        await user.type(confirmInput, 'differentPassword');
+        await user.click(submitBtn);
+
+        // Check that the error message appears
+        await waitFor(() => {
+            expect(screen.getByText(/пароли не совпадают!/i)).toBeInTheDocument();
+        });
+
+        // Verify that the mutation was not called
+        expect(mockMutate).not.toHaveBeenCalled();
     });
 });

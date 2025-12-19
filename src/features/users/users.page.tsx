@@ -47,10 +47,11 @@ function UsersPage() {
   return (
     <Page title="Список пользователей">
       <Table
-        dataSource={data || []}
+        dataSource={data?.result || []}
         columns={columns}
         loading={isLoading}
         rowKey={(record) => record.id}
+        pagination={data?.pagination}
       />
     </Page>
   );

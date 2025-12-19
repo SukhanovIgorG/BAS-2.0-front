@@ -1,5 +1,11 @@
-import type { UserType } from "./index";
+import type { SpaceType, UserType } from "./index";
 
+export type Pagination = {
+  page: number;
+  total: number;
+};
+
+// AUTH
 export type LoginDto = {
   email: string;
   password: string;
@@ -18,4 +24,16 @@ export type LoginResponseDto = {
 export type RegisterResponseDto = {
   accessToken: string;
   user: UserType;
+};
+
+// USERS
+export type GetUsersResponseDto = {
+  pagination: Pagination;
+  result: UserType[];
+};
+
+// SPACES
+export type GetSpacesResponseDto = {
+  pagination: Pagination;
+  result: SpaceType[];
 };
