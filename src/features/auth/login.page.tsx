@@ -2,10 +2,9 @@ import { styled } from 'styled-components';
 
 import { Card, Flex, Form, type FormProps, Typography } from 'antd';
 
-import { instance } from '@/shared/api/instance';
 import { ROUTES } from '@/shared/model/routes';
-import { useSession } from '@/shared/model/session';
 import { Button, Input } from '@/shared/ui/kit';
+import { useLoginMutation } from '@/shared/hooks';
 
 const defaultValues = {
   email: '',
@@ -18,15 +17,14 @@ interface LoginFormType {
 }
 
 function LoginPage() {
-  const { login } = useSession();
+  const { mutate } = useLoginMutation();
 
   const onFinish: FormProps<LoginFormType>['onFinish'] = async (data) => {
     const dto = {
       email: data.email,
       password: data.password,
     };
-    const res = await instance.post('auth/login', dto);
-    login(res.data.accessToken);
+    mutate(dto);
   };
 
   const onFinishFailed: FormProps<LoginFormType>['onFinishFailed'] = (

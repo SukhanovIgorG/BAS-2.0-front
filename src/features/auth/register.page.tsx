@@ -1,9 +1,8 @@
 import { Card, Form, type FormProps, Typography } from 'antd';
 
-import { instance } from '@/shared/api/instance';
 import { ROUTES } from '@/shared/model/routes';
-import { useSession } from '@/shared/model/session';
 import { Button, Input } from '@/shared/ui/kit';
+import { useRegisterMutation } from '@/shared/hooks';
 
 const defaultValues = {
   email: '',
@@ -18,15 +17,14 @@ interface RegisterFormType {
 }
 
 function RegisterPage() {
-  const { login } = useSession();
+  const { mutate } = useRegisterMutation();
 
   const onFinish: FormProps<RegisterFormType>['onFinish'] = async (data) => {
     const dto = {
       email: data.email,
       password: data.password,
     };
-    const res = await instance.post('api/auth/register', dto);
-    login(res.data.accessToken);
+    mutate(dto);
   };
 
   const onFinishFailed: FormProps<RegisterFormType>['onFinishFailed'] = (

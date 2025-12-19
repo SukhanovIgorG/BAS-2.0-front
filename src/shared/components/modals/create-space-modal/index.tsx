@@ -6,7 +6,7 @@ export type CreateSpaceModalProps = ModalProps;
 
 export const CreateSpaceModal = (props: CreateSpaceModalProps) => {
   return (
-    <Modal title="Modal create space" {...props}>
+    <Modal title="Создать пространство" {...props}>
       <SpaceForm mode="create" />
     </Modal>
   );
