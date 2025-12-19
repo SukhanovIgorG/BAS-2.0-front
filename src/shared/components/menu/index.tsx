@@ -21,7 +21,6 @@ export const Menu = ({
 
   const handleClick: MenuProps['onClick'] = (e) => {
     const { key } = e;
-    console.log('key ', key);
     navigate(key);
     if (onClick) {
       onClick(e);
