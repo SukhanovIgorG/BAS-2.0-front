@@ -8,6 +8,16 @@ import { queryClient } from '@/shared/api/query-client';
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ConfigProvider
+      modal={{
+        mask: {
+          blur: true,
+        },
+      }}
+      drawer={{
+        mask: {
+          blur: true,
+        },
+      }}
       theme={{
         token: {
           // Seed Token
