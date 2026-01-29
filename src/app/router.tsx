@@ -1,6 +1,6 @@
-import { createBrowserRouter, redirect } from 'react-router-dom';
+import { Navigate, createBrowserRouter } from 'react-router-dom';
 
-import { AppLayout, AuthLayout } from '@/shared/components';
+import { AppLayout, AuthLayout, RouteFallback } from '@/shared/components';
 
 import { ROUTES } from '../shared/model/routes';
 import App from './App';
@@ -16,6 +16,10 @@ export const router = createBrowserRouter([
       </Providers>
     ),
     children: [
+      {
+        index: true, // изменили path на index
+        element: <Navigate to={ROUTES.SPACES} replace />,
+      },
       // 🔒 Защищённые маршруты
       {
         loader: protectedLoader,
@@ -24,22 +28,27 @@ export const router = createBrowserRouter([
             <ProtectedRoute />
           </AppLayout>
         ),
+        HydrateFallback: RouteFallback,
         children: [
           {
             path: ROUTES.USERS,
             lazy: () => import('@/features/users/users.page'),
+            HydrateFallback: RouteFallback,
           },
           {
             path: ROUTES.SPACES,
             lazy: () => import('@/features/spaces/spaces.page'),
+            HydrateFallback: RouteFallback,
           },
           {
             path: ROUTES.SPACE,
             lazy: () => import('@/features/space/space.page'),
+            HydrateFallback: RouteFallback,
           },
           {
             path: ROUTES.STATISTIC,
             lazy: () => import('@/features/statistic/statistic.page'),
+            HydrateFallback: RouteFallback,
           },
         ],
       },
@@ -51,18 +60,14 @@ export const router = createBrowserRouter([
           {
             path: ROUTES.LOGIN,
             lazy: () => import('@/features/auth/login.page'),
+            HydrateFallback: RouteFallback,
           },
           {
             path: ROUTES.REGISTER,
             lazy: () => import('@/features/auth/register.page'),
+            HydrateFallback: RouteFallback,
           },
         ],
-      },
-
-      // 🏠 Редирект
-      {
-        path: ROUTES.HOME,
-        loader: () => redirect(ROUTES.SPACES),
       },
     ],
   },

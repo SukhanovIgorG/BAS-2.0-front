@@ -2,9 +2,9 @@ import { styled } from 'styled-components';
 
 import { Card, Flex, Form, type FormProps, Typography } from 'antd';
 
+import { useLoginMutation } from '@/shared/hooks';
 import { ROUTES } from '@/shared/model/routes';
 import { Button, Input } from '@/shared/ui/kit';
-import { useLoginMutation } from '@/shared/hooks';
 
 const defaultValues = {
   email: '',
