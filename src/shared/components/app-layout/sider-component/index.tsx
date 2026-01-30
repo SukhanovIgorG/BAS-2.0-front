@@ -1,11 +1,9 @@
-import { Button, Flex, Layout } from 'antd';
+import styled from 'styled-components';
+
+import { Button, Flex, Layout, Space, Typography } from 'antd';
 import { useState } from 'react';
 
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  ThunderboltTwoTone,
-} from '@ant-design/icons';
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 
 import { LogoutButton } from '@/shared/components';
 
@@ -24,9 +22,9 @@ export const SiderComponent = () => {
       theme="light"
       className="flex flex-col gap-4"
     >
-      <Flex vertical className="h-full pb-4">
-        <div className="flex w-full align-center justify-center">
-          <div className="p-1 flex items-center bg-blue-300">
+      <Flex vertical className="h-full pb-4 overflow-hidden">
+        <div className="flex w-full align-center justify-start ">
+          <Space className="p-2 flex items-center bg-blue-300 ">
             <Button
               type="text"
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -35,11 +33,14 @@ export const SiderComponent = () => {
                 fontSize: '16px',
               }}
             />
-          </div>
-          <div className="flex items-center justify-center h-16 bg-blue-300 flex-1">
-            <ThunderboltTwoTone />
-            {!collapsed && 'LOGO'}
-          </div>
+          </Space>
+          <StyledLogoWrap>
+            👾
+            <StyledTitle level={1} className="logo-title" visible={!collapsed}>
+              {' '}
+              BAS
+            </StyledTitle>
+          </StyledLogoWrap>
         </div>
         <Menu className="flex-1" />
         <div className="p-2">
@@ -49,3 +50,25 @@ export const SiderComponent = () => {
     </Sider>
   );
 };
+
+const StyledLogoWrap = styled(Space)`
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  background-color: oklch(80.9% 0.105 251.813);
+  width: 100%;
+  justify-content: center;
+`;
+
+const StyledTitle = styled(Typography.Title)<{ visible: boolean }>`
+  font-size: 24px !important;
+  font-weight: bold;
+  margin: 0 !important;
+  word-break: keep-all;
+  opacity: ${({ visible }) => (visible ? 1 : 0)};
+  width: ${({ visible }) => (visible ? '100%' : '0')};
+  transition:
+    opacity 0.3s ease-in-out,
+    width 0.3s normal;
+`;
