@@ -1,8 +1,8 @@
 import { vi } from 'vitest';
 
-import { MemoryRouter } from 'react-router-dom';
-
 import { render, screen } from '@testing-library/react';
+
+import { renderWithRouter } from '@/shared/helpers';
 
 import { Component as SpacesPage } from './spaces.page';
 
@@ -24,11 +24,7 @@ vi.mock('@/shared/ui', () => ({
 
 describe('SpacesPage', () => {
   it('renders correctly with spaces list', () => {
-    render(
-      <MemoryRouter>
-        <SpacesPage />
-      </MemoryRouter>,
-    );
+    render(renderWithRouter(<SpacesPage />));
 
     expect(screen.getByText('Список пространств')).toBeInTheDocument();
     expect(screen.getByText('Создать пространство')).toBeInTheDocument();

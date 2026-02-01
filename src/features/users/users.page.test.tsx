@@ -31,7 +31,6 @@ vi.mock('@/shared/hooks', () => ({
 }));
 
 describe('UsersPage', () => {
-  screen.debug();
   it('renders correctly', () => {
     render(<UsersPage />);
     expect(screen.getByText('Список пользователей')).toBeInTheDocument();
