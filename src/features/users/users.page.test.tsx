@@ -1,23 +1,42 @@
-import { render, screen } from '@testing-library/react';
-import { Component as UsersPage } from './users.page';
 import { vi } from 'vitest';
 
+import { render, screen } from '@testing-library/react';
+
+import { Component as UsersPage } from './users.page';
+
 vi.mock('@/shared/hooks', () => ({
-    useGetUsersQuery: vi.fn().mockReturnValue({
-        data: [
-            { id: '1', email: 'test@example.com', username: 'user1', roles: ['admin', 'loser', 'verylongrole'] },
-            { id: '2', email: 'other@example.com', username: 'user2', roles: ['user'] }
-        ],
-        isLoading: false
-    }),
+  useGetUsersQuery: vi.fn().mockReturnValue({
+    data: {
+      pagination: {
+        total: 2,
+        page: 1,
+      },
+      result: [
+        {
+          id: 'd73e7180-2e02-4ab1-8c91-e20ffbc81cdc',
+          username: 'user1',
+          email: 'user1@user.ru',
+          roles: ['user', 'loser', 'verylongrole'],
+        },
+        {
+          id: 'd73e7180-2e02-4ab1-8c91-e20ffbc81cdc',
+          username: 'user2',
+          email: 'user2@user.ru',
+          roles: ['user'],
+        },
+      ],
+    },
+    isLoading: false,
+  }),
 }));
 
 describe('UsersPage', () => {
-    it('renders correctly', () => {
-        render(<UsersPage />);
-        expect(screen.getByText('Список пользователей')).toBeInTheDocument();
-        expect(screen.getByText('user1')).toBeInTheDocument();
-        expect(screen.getByText('loser'.toUpperCase())).toBeInTheDocument();
-        expect(screen.getByText('verylongrole'.toUpperCase())).toBeInTheDocument();
-    });
+  screen.debug();
+  it('renders correctly', () => {
+    render(<UsersPage />);
+    expect(screen.getByText('Список пользователей')).toBeInTheDocument();
+    expect(screen.getByText('user1')).toBeInTheDocument();
+    expect(screen.getByText('loser'.toUpperCase())).toBeInTheDocument();
+    expect(screen.getByText('verylongrole'.toUpperCase())).toBeInTheDocument();
+  });
 });

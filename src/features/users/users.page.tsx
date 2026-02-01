@@ -44,6 +44,10 @@ const columns: TableProps<UserType>['columns'] = [
 function UsersPage() {
   const { data, isLoading } = useGetUsersQuery();
 
+  if (!data?.result) {
+    return null;
+  }
+
   return (
     <Page title="Список пользователей">
       <Table

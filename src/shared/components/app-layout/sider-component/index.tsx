@@ -36,7 +36,11 @@ export const SiderComponent = () => {
           </Space>
           <StyledLogoWrap>
             👾
-            <StyledTitle level={1} className="logo-title" visible={!collapsed}>
+            <StyledTitle
+              level={1}
+              className="logo-title"
+              visible={!collapsed ? 'true' : 'false'}
+            >
               {' '}
               BAS
             </StyledTitle>
@@ -61,13 +65,13 @@ const StyledLogoWrap = styled(Space)`
   justify-content: center;
 `;
 
-const StyledTitle = styled(Typography.Title)<{ visible: boolean }>`
+const StyledTitle = styled(Typography.Title)<{ visible: string }>`
   font-size: 24px !important;
   font-weight: bold;
   margin: 0 !important;
   word-break: keep-all;
-  opacity: ${({ visible }) => (visible ? 1 : 0)};
-  width: ${({ visible }) => (visible ? '100%' : '0')};
+  opacity: ${({ visible }) => (visible === 'true' ? 1 : 0)};
+  width: ${({ visible }) => (visible === 'true' ? '100%' : '0')};
   transition:
     opacity 0.3s ease-in-out,
     width 0.3s normal;
