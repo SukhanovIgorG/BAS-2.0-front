@@ -16,7 +16,7 @@ vi.mock('@/shared/hooks', () => ({
           id: 'd73e7180-2e02-4ab1-8c91-e20ffbc81cdc',
           username: 'user1',
           email: 'user1@user.ru',
-          roles: ['user', 'loser', 'verylongrole'],
+          roles: ['user', 'loser', 'veryLongRole'],
         },
         {
           id: 'd73e7180-2e02-4ab1-8c91-e20ffbc81cdc',
@@ -36,6 +36,6 @@ describe('UsersPage', () => {
     expect(screen.getByText('Список пользователей')).toBeInTheDocument();
     expect(screen.getByText('user1')).toBeInTheDocument();
     expect(screen.getByText('loser'.toUpperCase())).toBeInTheDocument();
-    expect(screen.getByText('verylongrole'.toUpperCase())).toBeInTheDocument();
+    expect(screen.getByText('veryLongRole'.toUpperCase())).toBeInTheDocument();
   });
 });

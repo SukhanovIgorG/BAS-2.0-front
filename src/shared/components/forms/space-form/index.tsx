@@ -1,5 +1,6 @@
-import type { SpaceType } from '@/shared/types';
 import { Form, type FormProps, Input } from 'antd';
+
+import type { SpaceType } from '@/shared/types';
 
 export type SpaceFormProps = FormProps & {
   mode: 'edit' | 'create';
@@ -7,9 +8,17 @@ export type SpaceFormProps = FormProps & {
 };
 
 export const SpaceForm = ({ mode, initialData, ...props }: SpaceFormProps) => {
-
+  const onSubmit = (values: SpaceType) => {
+    console.log(mode, values);
+  };
   return (
-    <Form {...props}>
+    <Form
+      initialValues={{
+        ...initialData,
+      }}
+      onFinish={onSubmit}
+      {...props}
+    >
       <Form.Item label="Name" name="name">
         <Input />
       </Form.Item>
