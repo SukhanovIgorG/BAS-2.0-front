@@ -5,11 +5,11 @@ interface LoadLineProps {
 }
 
 export const LoadLine = (props: LoadLineProps) => {
-  return <LoadLineContainer isLoading={props.isLoading} />;
+  return <LoadLineContainer loading={props.isLoading ? 'true' : 'false'} />;
 };
 
-const LoadLineContainer = styled.div<LoadLineProps>`
-  visibility: ${(props) => (props.isLoading ? 'visible' : 'hidden')};
+const LoadLineContainer = styled.div<{ loading: 'true' | 'false' }>`
+  visibility: ${(props) => (props.loading === 'true' ? 'visible' : 'hidden')};
   position: absolute;
   top: 0;
   left: 0;

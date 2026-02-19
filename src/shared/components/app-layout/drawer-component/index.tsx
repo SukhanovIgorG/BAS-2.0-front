@@ -17,7 +17,7 @@ export const DrawerComponent = ({ open, onOpen }: DrawerComponentProps) => {
       open={open}
       placement="top"
       onClose={() => onOpen(false)}
-      height={'80%'}
+      size={'80%'}
       footer={
         <Flex justify="flex-end">
           <LogoutButton />
