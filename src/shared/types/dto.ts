@@ -1,8 +1,14 @@
-import type { SpaceType, UserType } from "./index";
+import type { SpaceType, UserType } from './index';
+
+type ServerResponseList<T> = {
+  pagination: Pagination;
+  data: T[];
+};
 
 export type Pagination = {
   page: number;
   total: number;
+  size: number;
 };
 
 // AUTH
@@ -27,13 +33,7 @@ export type RegisterResponseDto = {
 };
 
 // USERS
-export type GetUsersResponseDto = {
-  pagination: Pagination;
-  result: UserType[];
-};
+export type GetUsersResponseDto = ServerResponseList<UserType>;
 
 // SPACES
-export type GetSpacesResponseDto = {
-  pagination: Pagination;
-  result: SpaceType[];
-};
+export type GetSpacesResponseDto = ServerResponseList<SpaceType>;

@@ -6,6 +6,25 @@ import { renderWithRouter } from '@/shared/helpers';
 
 import { Component as SpacesPage } from './spaces.page';
 
+vi.mock('@/shared/hooks', () => ({
+  useGetAllSpacesQuery: vi.fn().mockReturnValue({
+    data: {
+      pagination: {
+        total: 2,
+        page: 1,
+      },
+      data: [
+        {
+          id: 'd73e7180-2e02-4ab1-8c91-e20ffbc81cdc',
+          name: 'First',
+          address: 'planet Saturn',
+        },
+      ],
+    },
+    isLoading: false,
+  }),
+}));
+
 vi.mock('@/shared/components', () => ({
   Page: ({ title, children }: { title: string; children: React.ReactNode }) => (
     <div>

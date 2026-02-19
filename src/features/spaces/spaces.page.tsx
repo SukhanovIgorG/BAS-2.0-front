@@ -2,17 +2,10 @@ import { Button, Table, type TableProps } from 'antd';
 import { Link } from 'react-router-dom';
 
 import { CreateSpaceModal, Page } from '@/shared/components';
+import { useGetAllSpacesQuery } from '@/shared/hooks';
 import { ROUTES } from '@/shared/model/routes';
 import type { SpaceType } from '@/shared/types';
 import { Trigger } from '@/shared/ui';
-
-const SPACES: SpaceType[] = [
-  {
-    id: 'first-mock-space',
-    name: 'First',
-    address: 'planet Saturn',
-  },
-];
 
 const columns: TableProps<SpaceType>['columns'] = [
   {
@@ -36,16 +29,23 @@ const columns: TableProps<SpaceType>['columns'] = [
 ];
 
 function SpacesPage() {
+  const { data, isLoading } = useGetAllSpacesQuery();
+
   return (
     <Page title="Список пространств">
       <Trigger modal={<CreateSpaceModal />}>
         <Button style={{ marginBottom: '20px' }}>Создать пространство</Button>
       </Trigger>
       <Table
-        dataSource={SPACES || []}
+        dataSource={data?.data}
         columns={columns}
-        loading={false}
+        loading={isLoading}
         rowKey={(record) => record.id}
+        pagination={{
+          total: data?.pagination.total,
+          current: data?.pagination.page,
+          pageSize: data?.pagination.size,
+        }}
       />
     </Page>
   );

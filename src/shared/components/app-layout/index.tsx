@@ -3,9 +3,12 @@ import styled from 'styled-components';
 import { Layout } from 'antd';
 import { type ReactNode, useState } from 'react';
 
+import { useIsFetching } from '@tanstack/react-query';
+
 import { useMediaQuery } from '@/shared/hooks';
 import { Button } from '@/shared/ui';
 
+import { LoadLine } from '../ui';
 import { DrawerComponent } from './drawer-component';
 import { SiderComponent } from './sider-component';
 
@@ -14,9 +17,11 @@ const { Content } = Layout;
 export const AppLayout = ({ children }: { children: ReactNode }) => {
   const [open, setOpen] = useState(false);
   const isMobile = useMediaQuery('(max-width: 768px)');
+  const isFetching = useIsFetching();
   return (
     <OutsideLayout>
       {!isMobile && <SiderComponent />}
+      <LoadLine isLoading={!!isFetching} />
       <DrawerComponent open={open} onOpen={setOpen} />
       <StyledLayout>
         <StyledContent>{children}</StyledContent>
