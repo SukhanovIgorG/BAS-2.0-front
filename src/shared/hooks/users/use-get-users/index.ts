@@ -8,6 +8,6 @@ export const useGetUsersQuery = () => {
     queryFn: () => {
       return userService.getAll();
     },
-    select: (data) => data,
+    select: (data) => data.data,
   });
 };

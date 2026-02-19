@@ -11,7 +11,7 @@ vi.mock('@/shared/hooks', () => ({
         total: 2,
         page: 1,
       },
-      result: [
+      data: [
         {
           id: 'd73e7180-2e02-4ab1-8c91-e20ffbc81cdc',
           username: 'user1',

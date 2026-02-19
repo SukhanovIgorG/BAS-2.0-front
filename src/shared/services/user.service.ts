@@ -5,9 +5,7 @@ class UserService {
   private _USERS = '/users';
 
   async getAll() {
-    const { data } = await instance.get<Promise<GetUsersResponseDto>>(this._USERS);
-
-    return data;
+    return await instance.get<GetUsersResponseDto>(this._USERS);
   }
 }
 

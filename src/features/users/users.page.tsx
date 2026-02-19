@@ -44,18 +44,18 @@ const columns: TableProps<UserType>['columns'] = [
 function UsersPage() {
   const { data, isLoading } = useGetUsersQuery();
 
-  if (!data?.result) {
-    return null;
-  }
-
   return (
     <Page title="Список пользователей">
       <Table
-        dataSource={data?.result || []}
+        dataSource={data?.data}
         columns={columns}
         loading={isLoading}
         rowKey={(record) => record.id}
-        pagination={data?.pagination}
+        pagination={{
+          total: data?.pagination.total,
+          current: data?.pagination.page,
+          pageSize: data?.pagination.size,
+        }}
       />
     </Page>
   );
