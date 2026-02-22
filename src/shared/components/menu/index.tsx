@@ -11,11 +11,7 @@ import { ROUTES } from '@/shared/model/routes';
 
 export type MenuProps = AntMenuProps;
 
-export const Menu = ({
-  mode = 'inline',
-  defaultSelectedKeys = ['1'],
-  ...props
-}: MenuProps) => {
+export const Menu = ({ mode = 'inline', style, ...props }: MenuProps) => {
   const { onClick } = props;
   const navigate = useNavigate();
 
@@ -31,11 +27,11 @@ export const Menu = ({
     <AntMenu
       onClick={handleClick}
       mode={mode}
-      defaultSelectedKeys={defaultSelectedKeys}
+      defaultSelectedKeys={[window.location.pathname]}
       style={{
         backgroundColor: 'transparent',
+        ...style,
       }}
-      selectedKeys={[window.location.pathname]}
       {...props}
       items={[
         {
