@@ -2,6 +2,8 @@ import { styled } from 'styled-components';
 
 import type { ReactNode } from 'react';
 
+import { TOKENS } from '@/shared/tokens';
+
 export interface PageProps {
   children?: ReactNode;
   title?: string;
@@ -24,6 +26,7 @@ const TopLine = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: ${TOKENS.spacing[4]};
 `;
 
 const PageWrapper = styled.div`
@@ -31,7 +34,6 @@ const PageWrapper = styled.div`
 `;
 
 const PageTitle = styled.h2`
-  margin-bottom: 16px;
   font-size: 24px;
   font-weight: 600;
 `;

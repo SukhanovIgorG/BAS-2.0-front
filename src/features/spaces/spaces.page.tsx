@@ -36,7 +36,7 @@ function SpacesPage() {
       title="Список пространств"
       renderTopRight={
         <Trigger modal={<CreateSpaceModal />}>
-          <Button style={{ marginBottom: '20px' }}>Создать пространство</Button>
+          <Button>Создать пространство</Button>
         </Trigger>
       }
     >
