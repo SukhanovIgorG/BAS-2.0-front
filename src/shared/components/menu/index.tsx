@@ -35,6 +35,7 @@ export const Menu = ({
       style={{
         backgroundColor: 'transparent',
       }}
+      selectedKeys={[window.location.pathname]}
       {...props}
       items={[
         {
