@@ -36,11 +36,16 @@ export const Header = () => {
           ],
         }}
       >
-        <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
+        <StyledAvatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
       </Dropdown>
     </HeaderWrapper>
   );
 };
+
+const StyledAvatar = styled(Avatar)`
+  margin: 0 auto;
+  cursor: pointer;
+`;
 
 const HeaderWrapper = styled.div`
   height: fit-content;
