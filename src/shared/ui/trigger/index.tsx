@@ -9,12 +9,13 @@ export type TriggerProps = {
 export const Trigger = ({ children, modal }: TriggerProps) => {
   const [isActive, setActive] = useState(false);
 
+  const toggleActive = () => {
+    setActive((prev) => !prev);
+  };
+
   return (
     <>
-      <children.type
-        onClick={() => setActive(true)}
-        {...(children.props as object)}
-      />
+      <children.type onClick={toggleActive} {...(children.props as object)} />
       {isActive ? (
         <modal.type
           {...modal.props}

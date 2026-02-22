@@ -24,7 +24,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
           token: {
             // Seed Token
             // Alias Token
-            borderRadius: 3,
           },
           components: {
             Button: {},

@@ -1,5 +1,3 @@
-import { styled } from 'styled-components';
-
 import { Card, Flex, Form, type FormProps, Typography } from 'antd';
 
 import { useLoginMutation } from '@/shared/hooks';
@@ -34,7 +32,7 @@ function LoginPage() {
   };
 
   return (
-    <StyledCard title="Вход в аккаунт" className="w-full max-w-sm">
+    <Card title="Вход в аккаунт" className="w-full max-w-sm">
       <Form
         layout="vertical"
         onFinish={onFinish}
@@ -108,14 +106,8 @@ function LoginPage() {
           </Button>
         </Typography>
       </Form>
-    </StyledCard>
+    </Card>
   );
 }
-
-const StyledCard = styled(Card)`
-  border: 3px solid #252424;
-  border-radius: 3px;
-  box-shadow: 4px 4px 0 0 #221b19;
-`;
 
 export const Component = LoginPage;

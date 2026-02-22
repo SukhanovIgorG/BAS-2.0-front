@@ -32,6 +32,9 @@ export const Menu = ({
       onClick={handleClick}
       mode={mode}
       defaultSelectedKeys={defaultSelectedKeys}
+      style={{
+        backgroundColor: 'transparent',
+      }}
       {...props}
       items={[
         {
