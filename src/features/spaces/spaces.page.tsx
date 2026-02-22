@@ -32,10 +32,14 @@ function SpacesPage() {
   const { data, isLoading } = useGetAllSpacesQuery();
 
   return (
-    <Page title="Список пространств">
-      <Trigger modal={<CreateSpaceModal />}>
-        <Button style={{ marginBottom: '20px' }}>Создать пространство</Button>
-      </Trigger>
+    <Page
+      title="Список пространств"
+      renderTopRight={
+        <Trigger modal={<CreateSpaceModal />}>
+          <Button style={{ marginBottom: '20px' }}>Создать пространство</Button>
+        </Trigger>
+      }
+    >
       <Table
         dataSource={data?.data}
         columns={columns}
