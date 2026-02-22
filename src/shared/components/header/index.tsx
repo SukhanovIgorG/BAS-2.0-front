@@ -2,13 +2,19 @@ import styled from 'styled-components';
 
 import { Avatar, Dropdown } from 'antd';
 
-import { SettingOutlined, UserOutlined } from '@ant-design/icons';
+import {
+  LoginOutlined,
+  SettingOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
 
-import { LogoutButton } from '../buttons';
+import { useSession } from '@/shared/model/session';
+
 import { Logo } from '../logo';
 import { Menu } from '../menu';
 
 export const Header = () => {
+  const { logout } = useSession();
   return (
     <HeaderWrapper>
       <Logo compact />
@@ -31,7 +37,12 @@ export const Header = () => {
             },
             {
               key: 'logout',
-              label: <LogoutButton />,
+              label: 'Выйти',
+              style: { color: 'red' },
+              icon: <LoginOutlined />,
+              onClick: () => {
+                logout();
+              },
             },
           ],
         }}
