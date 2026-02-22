@@ -19,5 +19,5 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
 
-  background-image: ${TOKENS.bg.bgPatterns.primary};
+  background-image: ${TOKENS.bgPatterns.primary};
 `;

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-import { Avatar, Dropdown } from 'antd';
+import { Avatar, Dropdown, Switch } from 'antd';
+import { useContext } from 'react';
 
 import {
   LoginOutlined,
@@ -8,13 +9,17 @@ import {
   UserOutlined,
 } from '@ant-design/icons';
 
+import { ThemeContext } from '@/shared/context';
 import { useSession } from '@/shared/model/session';
+import { ThemeVariants } from '@/shared/types/collections';
 
 import { Logo } from '../logo';
 import { Menu } from '../menu';
 
 export const Header = () => {
   const { logout } = useSession();
+  const { theme, handleChangeTheme } = useContext(ThemeContext);
+
   return (
     <HeaderWrapper>
       <Logo compact />
@@ -31,6 +36,18 @@ export const Header = () => {
               key: 'settings',
               label: 'Настройки',
               icon: <SettingOutlined />,
+            },
+
+            {
+              key: 'theme',
+              label: (
+                <Switch
+                  checked={theme === ThemeVariants.Dark}
+                  checkedChildren="темная 🌙"
+                  unCheckedChildren="Светлая ☀️"
+                  onChange={handleChangeTheme}
+                />
+              ),
             },
             {
               type: 'divider',

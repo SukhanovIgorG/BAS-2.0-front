@@ -6,14 +6,14 @@ function StatisticPage() {
   const [messageApi, contextHolder] = message.useMessage();
 
   const info = () => {
-    messageApi.info('Hello, Ant Design!');
+    messageApi.info('Я - сообщение!');
   };
 
   return (
     <Page title="Статистика">
       {contextHolder}
-      <Button type="primary" onClick={info}>
-        Display normal message
+      <Button type="dashed" onClick={info}>
+        Показать всплывающее сообщение
       </Button>
     </Page>
   );

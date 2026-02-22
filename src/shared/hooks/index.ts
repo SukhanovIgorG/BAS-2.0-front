@@ -1,5 +1,6 @@
 // UTILS
 export { useMediaQuery } from './use-media-query';
+export { useTheme } from './use-theme';
 
 // AUTH
 export { useRegisterMutation } from './auth/use-register';

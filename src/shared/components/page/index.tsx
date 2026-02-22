@@ -26,7 +26,7 @@ const TopLine = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: ${TOKENS.spacing[4]};
+  margin-bottom: ${TOKENS.spacing[5]};
 `;
 
 const PageWrapper = styled.div`
